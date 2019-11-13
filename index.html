@@ -4,20 +4,60 @@
   <!-- viewport tag only valid to mobile browser. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <script type="text/javascript" src="./liteH5Player-unit-test.debug.js"></script>
 </head>
 <body>
-  <h1>HTML5 Canvas Player</h1>
   <div>
     <canvas id="idCanvas"></canvas>
   </div>
   <div>
-    <button onclick="onBtnOpen()">open</button>
+    <button onclick="onBtnOpen1()">open1</button>
+    <button onclick="onBtnOpen2()">open2</button>
     <button onclick="onBtnPlay()">play</button>
     <button onclick="onBtnPause()">pause</button>
     <button onclick="onBtnTest()">test</button>
   </div>
 
   <script type="text/javascript">
+    var idCanvas = document.getElementById("idCanvas");
+    var player2;
+    var asset1 = {
+      canvas: idCanvas,
+      url: './tree.mp4',
+      width: 560,
+      height: 304
+    };
+    var asset2 = {
+      canvas: idCanvas,
+      url: './test_baseline.mp4',
+      width: 720,
+      height: 406
+    };
+
+   function onBtnOpen1() {
+      player2 = new oldmtn.Player2(asset1);
+      player2.open();
+    }
+
+    function onBtnOpen2() {
+      player2 = new oldmtn.Player2(asset2);
+      player2.open();
+    }
+
+    function onBtnPlay() {
+      player2.play();
+    }
+
+    function onBtnPause() {
+      player2.pause();
+    }
+
+    function onBtnTest() {
+      var position = player2.getPosition();
+      console.log(`position: ${position}`);
+    }
+
   </script>
 </body>
 </html>
